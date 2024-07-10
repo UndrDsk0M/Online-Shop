@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<style>
+    .signup-container {
+        width: 300px;
+        margin: 100px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .signup-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    .form-group input {
+        width: calc(100% - 20px);
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    .form-group button {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 4px;
+        background-color: #007BFF;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    .form-group button:hover {
+        background-color: #0056b3;
+    }
+    .form-group p {
+        margin-top: 15px;
+        text-align: center;
+    }
+    .form-group p a {
+        color: #007BFF;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+    .form-group p a:hover {
+        color: #0056b3;
+    }
+</style>
+<h1>|</h1>
+<div class="signup-container">
+        <h2>Sign Up</h2>
+        <form action="{% url 'signup' %}" method="POST">
+            <div class="form-group">
+                <label for="email">fullName</label>
+                <input type="name" id="email" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="username">Phone</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            {% comment %} <div class="form-group">
+                <label for="password">Confirm Password</label>
+                <input type="password" id="password" name="password_2" required> {% endcomment %}
+            </div>
+            <div class="form-group">
+                <button type="submit">Sign Up</button>
+            </div>
+            {% csrf_token %}
+            <div class="form-group">
+                <p>Already have an account? <a href="{% url "signin" %}">Login</a></p>
+            </div>
+        </form>
+    </div>
+
+
+{% endblock content %}

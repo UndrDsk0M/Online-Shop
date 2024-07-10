@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+<!-- New Arrivals section start -->
+<div class="collection_text">Shoes</div>
+<div class="collection_section layout_padding">
+    <div class="container">
+        <h1 class="new_text"><strong>New Arrivals Products</strong></h1>
+        <p class="consectetur_text">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
+    </div>
+</div>
+<div class="layout_padding gallery_section">
+    <div class="container">
+        <div class="row" id="itemsContainer">
+            {% for item in items %}
+            <a href="{% url 'item' item.slug %}">
+                <div class="col-sm-4">
+                    <div class="best_shoes">
+                        {% if item.available %}
+                        <p class="best_text">{{ item.name }}</p>
+                        <div class="shoes_icon"><img width="500" height="5000" src="{{ item.image.url }}"></div>
+                        {% else %}
+                        <p class="best_text"><s>{{ item.name }}</s></p>
+                        <div style="filter: grayscale(100%);" class="shoes_icon"><img src="{{ item.image.url }}"></div>
+                        {% endif %}
+                        <div class="star_text">
+                            <div class="left_part">
+                                <ul>
+                                    <li><a href="#"><img src="{% static 'images/star-icon.png'%}"></a></li>
+                                    <li><a href="#"><img src="{% static 'images/star-icon.png'%}"></a></li>
+                                    <li><a href="#"><img src="{% static 'images/star-icon.png'%}"></a></li>
+                                    <li><a href="#"><img src="{% static 'images/star-icon.png'%}"></a></li>
+                                    <li><a href="#"><img src="{% static 'images/star-icon.png'%}"></a></li>
+                                </ul>
+                            </div>
+                            <div class="right_part">
+                                {% if item.available %}
+                                <div class="shoes_price"><span style="color: #ff4e5b;">{{ item.price }}</span></div>
+                                {% else %}
+                                <div class="shoes_price">Unavailable</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        {% if more %}
+        <div class="buy_now_bt">
+            <button name="buy_text" class="buy_text">More</button>
+        </div>
+        {% endif %}
+    </div>
+</div>
+<!-- New Arrivals section end -->
+
+<!-- Javascript files-->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/jquery-3.0.0.min.js' %}"></script>
+<script src="{% static 'js/plugin.js' %}"></script>
+<!-- sidebar -->
+<script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+<!-- javascript -->
+<script src="{% static 'js/owl.carousel.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelector('.buy_text').addEventListener('click', () => {
+            fetch('/api/get-items/')
+                .then(response => response.json())
+                .then(items => {
+                    const itemsContainer = document.getElementById('itemsContainer');
+
+                    items.forEach(item => {
+                        // Create the outer anchor tag
+                        const anchor = document.createElement('a');
+                        anchor.href = `http://127.0.0.1:8000/${item.slug}`;
+
+                        // Create the col-sm-4 div
+                        const colDiv = document.createElement('div');
+                        colDiv.className = 'col-sm-4';
+
+                        // Create the best_shoes div
+                        const bestShoesDiv = document.createElement('div');
+                        bestShoesDiv.className = 'best_shoes';
+
+                        // Create the product name
+                        const nameP = document.createElement('p');
+                        nameP.className = 'best_text';
+                        if (item.available) {
+                            nameP.textContent = item.name;
+                        } else {
+                            nameP.innerHTML = `<s>${item.name}</s>`;
+                        }
+						console.log(item);
+                        // Create the image div
+                        const imageDiv = document.createElement('div');
+                        imageDiv.className = 'shoes_icon';
+                        const img = document.createElement('img');
+                        img.src = "/media/"+item.image;
+                        if (!item.available) {
+                            img.style.filter = 'grayscale(100%)';
+                        }
+                        imageDiv.appendChild(img);
+
+                        // Create the star_text div
+                        const starTextDiv = document.createElement('div');
+                        starTextDiv.className = 'star_text';
+
+                        // Create the stars
+                        const leftPartDiv = document.createElement('div');
+                        leftPartDiv.className = 'left_part';
+                        const ul = document.createElement('ul');
+                        for (let i = 0; i < 5; i++) {
+                            const li = document.createElement('li');
+                            const starImg = document.createElement('img');
+                            starImg.src = '/static/images/star-icon.png';
+                            li.appendChild(starImg);
+                            ul.appendChild(li);
+                        }
+                        leftPartDiv.appendChild(ul);
+
+                        // Create the price or availability text
+                        const rightPartDiv = document.createElement('div');
+                        rightPartDiv.className = 'right_part';
+                        const priceDiv = document.createElement('div');
+                        priceDiv.className = 'shoes_price';
+                        if (item.available) {
+                            priceDiv.innerHTML = `<span style="color: #ff4e5b;">${item.price}</span>`;
+                        } else {
+                            priceDiv.textContent = 'Unavailable';
+                        }
+                        rightPartDiv.appendChild(priceDiv);
+
+                        // Append the left and right parts to the star_text div
+                        starTextDiv.appendChild(leftPartDiv);
+                        starTextDiv.appendChild(rightPartDiv);
+
+                        // Append all elements to the best_shoes div
+                        bestShoesDiv.appendChild(nameP);
+                        bestShoesDiv.appendChild(imageDiv);
+                        bestShoesDiv.appendChild(starTextDiv);
+
+                        // Append best_shoes div to the col-sm-4 div
+                        colDiv.appendChild(bestShoesDiv);
+
+                        // Append col-sm-4 div to the anchor tag
+                        anchor.appendChild(colDiv);
+
+                        // Append anchor tag to the items container
+                        itemsContainer.appendChild(anchor);
+                    });
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        });
+    });
+</script>
+{% endblock %}

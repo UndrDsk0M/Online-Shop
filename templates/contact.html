@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% load static %}
+
+   	<!-- contact section start -->
+    <div class="collection_text">Contact Us</div>
+    <div class="layout_padding contact_section">
+    	<div class="container">
+    		<h1 class="new_text"><strong>Contact Now</strong></h1>
+    	</div>
+    	<div class="container-fluid ram">
+    		<div class="row">
+                {% if contactnow == True %}
+
+    			<div class="col-md-6">
+    				<div class="email_box">
+                    <div class="input_main">
+                       <div class="container">
+                          <form method="POST" action="{% url 'main' %}">
+                            {% csrf_token %}
+							<div class="form-group">
+                              <input type="text" class="email-bt" placeholder="Name" name="name">
+                            </div>
+                            <div class="form-group">
+                              <input type="text" class="email-bt" placeholder="Email" name="email">
+                            </div>
+                            
+                            <div class="form-group">
+                                <textarea class="massage-bt" placeholder="Massage" rows="5" id="comment" name="message"></textarea>
+                            </div>
+							<input style="background-color: aquamarine;color: white; height: 50px;" height=202px class="send_btn" type="submit" value="Send" ></button>
+                          </form>   
+                       </div> 
+                       
+                        
+                                         
+                    </div>
+					{% else %}
+                    <div class="col-md-6">
+                        <div class="email_box">
+                        <div class="input_main">
+                           <div class="container">
+                            <h1 style="color:#fff;">Welcome to Yours Onlineshop!</h1>
+                            <h1 style="color:#fff;"><strong>Why & When?</strong></h1>
+                            <h2 style="color:#fff;" >What if we choose to be <strong>Powerful</strong>?</h2>
+                            <h2 style="color:#fff;" >i and my friend tried to Create <strong>Useful</strong> things</h2>
+                            <h2 style="color:#fff;" >Let's unleash our <strong>limitless potential</strong>!</h2>
+                            <h2 style="color:#fff;" >Why? Becuase <strong>Lions</strong> never giveup!</h2>
+                            <h2 style="color:#fff;" >so We stayed awake like sleepless <strong>Owls</strong>.</h2>
+                            <h2> </h2>
+                            <h2><strong> We Are P.U.L.L.O</strong> 
+                           </div>                          
+                        </div>
+					{% endif %}
+    		</div>
+    			</div>
+    			<div class="col-md-6">
+    				<div class="shop_banner">
+    					<div class="our_shop">
+    						<button class="out_shop_bt">Our Shop</button>
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+   	<!-- contact section end -->
+	{% endblock %}
+<script>
+         $(document).ready(function(){
+         $(".fancybox").fancybox({
+         openEffect: "none",
+         closeEffect: "none"
+         });
+         
+         
+$('#myCarousel').carousel({
+            interval: false
+        });
+
+        //scroll slides on swipe for touch enabled devices
+
+        $("#myCarousel").on("touchstart", function(event){
+
+            var yClick = event.originalEvent.touches[0].pageY;
+            $(this).one("touchmove", function(event){
+
+                var yMove = event.originalEvent.touches[0].pageY;
+                if( Math.floor(yClick - yMove) > 1 ){
+                    $(".carousel").carousel('next');
+                }
+                else if( Math.floor(yClick - yMove) < -1 ){
+                    $(".carousel").carousel('prev');
+                }
+            });
+            $(".carousel").on("touchend", function(){
+                $(this).off("touchmove");
+            });
+        });
+      </script> 
+   </body>
+</html>

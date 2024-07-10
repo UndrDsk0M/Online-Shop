@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}"> <!-- Assuming you have a static CSS file -->
+</head>
+<body>
+    <div class="user-card">
+        <div class="user-card-header">
+            <h2>Welcome, {{ user.first_name }}!</h2>
+        </div>
+        <div class="user-card-body">
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Phone:</strong> {{ user.username }}</p>
+            <p><strong>Full Name:</strong> {{user.first_name}} {{ user.last_name }}</p>
+            <!-- Add more user details as needed -->
+        </div>
+        <div class="user-card-footer">
+
+            <form method="POST" action="{% url 'logout' %}">{% csrf_token %}<button type='submit'>Logout</button></form>
+        </div>
+    </div>
+</body>
+</html>

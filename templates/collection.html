@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% load static %}
+
+  <div class="collection_text">Collection</div>
+    <div class="layout_padding collection_section">
+    	<div class="container">
+    	    <h1 class="new_text"><strong>New  Collection</strong></h1>
+    	    <p class="consectetur_text">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
+    	    <div class="collection_section_2">
+    	    	<div class="row">
+    	    		<div class="col-md-6">
+    	    			<div class="about-img">
+    	    				<button class="new_bt">New</button>
+    	    				<div class="shoes-img"><img src="{{ new_collection2.image.url}}"></div>
+    	    				<p class="sport_text">{{ new_collection2.name }}</p>
+    	    				<div class="dolar_text">$<strong style="color: #f12a47;">{{ new_collection2.price }}</strong> </div>
+    	    				<div class="star_icon">
+    	    					<ul>
+    	    						<li><a href="#"><img src="{%static 'images/star-icon'%}.png"></a></li>
+    	    						<li><a href="#"><img src="{%static 'images/star-icon'%}.png"></a></li>
+    	    						<li><a href="#"><img src="{%static 'images/star-icon'%}.png"></a></li>
+    	    						<li><a href="#"><img src="{%static 'images/star-icon'%}.png"></a></li>
+    	    						<li><a href="#"><img src="{%static 'images/star-icon'%}.png"></a></li>
+    	    					</ul>
+    	    				</div>
+    	    			</div>
+    	    			<button class="seemore_bt"><a href="{% url "shoes" %}">See More</a></button>
+    	    		</div>
+    	    		<div class="col-md-6">
+    	    			<div class="about-img2">
+    	    				<div class="shoes-img2"><img src="{{ new_collection2.image.url }}"></div>
+    	    				<p class="sport_text">{{ new_collection1.name }}</p>
+    	    				<div class="dolar_text">$<strong style="color: #f12a47;">{{ new_collection2.name }}</strong> </div>
+    	    				<div class="star_icon">
+    	    					<ul>
+    	    						<li><a href="#"><img src="{%static 'images/star-icon'%}.png"></a></li>
+    	    						<li><a href="#"><img src="{%static 'images/star-icon'%}.png"></a></li>
+    	    						<li><a href="#"><img src="{%static 'images/star-icon'%}.png"></a></li>
+    	    						<li><a href="#"><img src="{%static 'images/star-icon'%}.png"></a></li>
+    	    						<li><a href="#"><img src="{%static 'images/star-icon'%}.png"></a></li>
+    	    					</ul>
+    	    				</div>
+    	    			</div>
+    	    		</div>
+    	    	</div>
+    	    </div>
+    	</div>
+    </div>
+	<!-- new collection section end -->
+
+         
+<script>         
+$('#myCarousel').carousel({
+            interval: false
+        });
+
+        //scroll slides on swipe for touch enabled devices
+
+        $("#myCarousel").on("touchstart", function(event){
+
+            var yClick = event.originalEvent.touches[0].pageY;
+            $(this).one("touchmove", function(event){
+
+                var yMove = event.originalEvent.touches[0].pageY;
+                if( Math.floor(yClick - yMove) > 1 ){
+                    $(".carousel").carousel('next');
+                }
+                else if( Math.floor(yClick - yMove) < -1 ){
+                    $(".carousel").carousel('prev');
+                }
+            });
+            $(".carousel").on("touchend", function(){
+                $(this).off("touchmove");
+            });
+        });
+      </script> 
+
+{% endblock content %}

@@ -1,0 +1,253 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% load static %}
+
+	
+    <div class="layout_padding collection_section">
+    	<div class="container">
+    	    <h1 class="new_text"><strong>New  Collection</strong></h1>
+    	    <p class="consectetur_text">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
+    	    
+			<div class="collection_section_2">
+    	    	<div class="row">
+    	    		<div class="col-md-6">
+					<a href="{% url 'item' new_collection1.slug %}">
+						<div class="about-img">
+    	    				<button class="new_bt">New</button>
+    	    				<div class="shoes-img"><img src={{ new_collection1.image.url }}></div>
+    	    				<p class="sport_text">{{ new_collection1.name }}</p>
+    	    				<div class="dolar_text">$<strong style="color: #f12a47;">{{ new_collection1.price }}</strong> </div>
+    	    				<div class="star_icon">
+    	    					<ul>
+    	    						<li><a href="#"><img src="{% static 'images/star-icon.png' %}"></a></li>
+    	    						<li><a href="#"><img src="{% static 'images/star-icon.png' %}"></a></li>
+    	    						<li><a href="#"><img src="{% static 'images/star-icon.png' %}"></a></li>
+    	    						<li><a href="#"><img src="{% static 'images/star-icon.png' %}"></a></li>
+    	    						<li><a href="#"><img src="{% static 'images/star-icon.png' %}"></a></li>
+    	    					</ul>
+    	    				</div>
+    	    			</div>
+					<a href="{% url "shoes" %}">
+    	    			<button class="seemore_bt">See More</a></button>
+					</a>
+    	    		</div>
+					<a href="{% url 'item' new_collection2.slug %}">
+    	    		<div class="col-md-6">
+    	    			<div class="about-img2">
+    	    				<div class="shoes-img2"><img src="{{new_collection2.image.url}}"></div>
+    	    				<p class="sport_text">{{ new_collection2.name }}</p>
+    	    				<div class="dolar_text">$<strong style="color: #f12a47;">{{ new_collection2.price }}</strong> </div>
+    	    				<div class="star_icon">
+    	    					<ul>
+    	    						<li><a href="#"><img src="{% static 'images/star-icon.png' %}"></a></li>
+    	    						<li><a href="#"><img src="{% static 'images/star-icon.png' %}"></a></li>
+    	    						<li><a href="#"><img src="{% static 'images/star-icon.png' %}"></a></li>
+    	    						<li><a href="#"><img src="{% static 'images/star-icon.png' %}"></a></li>
+    	    						<li><a href="#"><img src="{% static 'images/star-icon.png' %}"></a></li>
+    	    					</ul>
+    	    				</div>
+    	    			</div>
+    	    		</div>
+					</a>
+				</div>
+    	    </div>
+			
+    	</div>
+    </div>
+    <div class="collection_section">
+    	<div class="container">
+    		<h1 class="new_text"><strong>Racing Boots</strong></h1>
+    	    <p class="consectetur_text">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
+    	</div>
+    </div>
+    <div class="collectipn_section_3 layuot_padding">
+    	<div class="container">
+    		<div class="racing_shoes">
+    			<div class="row">
+    				<div class="col-md-8">
+    					<div class="shoes-img3"><img src="{% static 'images/shoes-img3.png' %}"></div>
+    				</div>
+    				<div class="col-md-4">
+    					<div class="sale_text"><strong>Sale <br><span style="color: #0a0506;">JOGING</span> <br>SHOES</strong></div>
+    					<div class="number_text"><strong>$ <span style="color: #0a0506">100</span></strong></div>
+    					<button class="seemore">See More</button>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+    <div class="collection_section layout_padding">
+    	<div class="container">
+    		<h1 class="new_text"><strong>New Arrivals Products</strong></h1>
+    	    <p class="consectetur_text">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
+    	</div>
+    </div>
+	<!-- new collection section end -->
+	<!-- New Arrivals section start -->
+    <div class="layout_padding gallery_section">
+    	<div class="container">
+    		<div class="row">
+				{% for item in items %}
+    			<a href="{% url 'item' item.slug %}">
+				<div class="col-sm-4">
+    				<div class="best_shoes">
+    					
+						<p class="best_text">{{ item.name }}</p>
+			
+					
+    					<div class="shoes_icon"><img src="{{ item.image.url }}" width=500 height=500></div>
+    					
+						<div class="star_text">
+    						<div class="left_part">
+    							<ul>
+    	    						<li><a href="#"><img src="{% static 'images/star-icon.png' %}"></a></li>
+    	    						<li><a href="#"><img src="{% static 'images/star-icon.png' %}"></a></li>
+    	    						<li><a href="#"><img src="{% static 'images/star-icon.png' %}"></a></li>
+    	    						<li><a href="#"><img src="{% static 'images/star-icon.png' %}"></a></li>
+    	    						<li><a href="#"><img src="{% static 'images/star-icon.png' %}"></a></li>
+    	    					</ul>
+    						</div>
+    						<div class="right_part">
+    							<div class="shoes_price"><span style="color: #ff4e5b;">{{ item.price }}</span></div>
+    						</div>
+    					</div>
+    				</div>
+    			</div>
+			</a>
+				{% endfor %}
+    		</div>
+    		<div class="row">
+    			<div class="col-sm-4">
+    				<div class="best_shoes">
+    					<p class="best_text">Sports Shoes</p>
+    					<div class="shoes_icon"><img src="{% static 'images/shoes-img7.png' %}"></div>
+    					<div class="star_text">
+    						<div class="left_part">
+    							<ul>
+    	    						<li><a href="#"><img src="{% static 'images/star-icon.png' %}"></a></li>
+    	    						<li><a href="#"><img src="{% static 'images/star-icon.png' %}"></a></li>
+    	    						<li><a href="#"><img src="{% static 'images/star-icon.png' %}"></a></li>
+    	    						<li><a href="#"><img src="{% static 'images/star-icon.png' %}"></a></li>
+    	    						<li><a href="#"><img src="{% static 'images/star-icon.png' %}"></a></li>
+    	    					</ul>
+    						</div>
+    						<div class="right_part">
+    							<div class="shoes_price">$ <span style="color: #ff4e5b;">70</span></div>
+    						</div>
+    					</div>
+    				</div>
+    			</div>
+    			<div class="col-sm-4">
+    				<div class="best_shoes">
+    					<p class="best_text">Sports Shoes</p>
+    					<div class="shoes_icon"><img src="{% static 'images/shoes-img8.png' %}"></div>
+    					<div class="star_text">
+    						<div class="left_part">
+    							<ul>
+    	    						<li><a href="#"><img src="{% static 'images/star-icon.png' %}"></a></li>
+    	    						<li><a href="#"><img src="{% static 'images/star-icon.png' %}"></a></li>
+    	    						<li><a href="#"><img src="{% static 'images/star-icon.png' %}"></a></li>
+    	    						<li><a href="#"><img src="{% static 'images/star-icon.png' %}"></a></li>
+    	    						<li><a href="#"><img src="{% static 'images/star-icon.png' %}"></a></li>
+    	    					</ul>
+    						</div>
+    						<div class="right_part">
+    							<div class="shoes_price">$ <span style="color: #ff4e5b;">100</span></div>
+    						</div>
+    					</div>
+    				</div>
+    			</div>
+    			<div class="col-sm-4">
+    				<div class="best_shoes">
+    					<p class="best_text">Sports Shoes</p>
+    					<div class="shoes_icon"><img src="{% static 'images/shoes-img9.png' %}"></div>
+    					<div class="star_text">
+    						<div class="left_part">
+    							<ul>
+    	    						<li><a href="#"><img src="{% static 'images/star-icon.png' %}"></a></li>
+    	    						<li><a href="#"><img src="{% static 'images/star-icon.png' %}"></a></li>
+    	    						<li><a href="#"><img src="{% static 'images/star-icon.png' %}"></a></li>
+    	    						<li><a href="#"><img src="{% static 'images/star-icon.png' %}"></a></li>
+    	    						<li><a href="#"><img src="{% static 'images/star-icon.png' %}"></a></li>
+    	    					</ul>
+    						</div>
+    						<div class="right_part">
+    							<div class="shoes_price">$ <span style="color: #ff4e5b;">90</span></div>
+    						</div>
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+    		<div class="buy_now_bt">
+				<a href="{% url "shoes" %}">
+    			<button class="buy_text">See More</button>
+				</a>
+    		</div>
+    	</div>
+    </div>
+   	<!-- New Arrivals section end -->
+   	<!-- contact section start -->
+    <div class="layout_padding contact_section">
+    	<div class="container">
+    		<h1 class="new_text"><strong>Contact Now</strong></h1>
+    	</div>
+    	<div class="container-fluid ram">
+    		<div class="row">
+				{% if contactnow == True %}
+
+    			<div class="col-md-6">
+    				<div class="email_box">
+                    <div class="input_main">
+                       <div class="container">
+                          <form method="POST" action="{% url 'main' %}">
+                            {% csrf_token %}
+							<div class="form-group">
+                              <input type="text" class="email-bt" placeholder="Name" name="name">
+                            </div>
+                            <div class="form-group">
+                              <input type="text" class="email-bt" placeholder="Email" name="email">
+                            </div>
+                            
+                            <div class="form-group">
+                                <textarea class="massage-bt" placeholder="Massage" rows="5" id="comment" name="message"></textarea>
+                            </div>
+							<input style="background-color: aquamarine;color: white; height: 50px;" height=202px class="send_btn" type="submit" value="Send" ></button>
+                          </form>   
+                       </div> 
+                       
+                        
+                                         
+                    </div>
+					{% else %}
+                    <div class="col-md-6">
+                        <div class="email_box">
+                        <div class="input_main">
+                           <div class="container">
+                            <h1 style="color:#fff;">Welcome to Yours Onlineshop!</h1>
+                            <h1 style="color:#fff;"><strong>Why & When?</strong></h1>
+                            <h2 style="color:#fff;" >What if we choose to be <strong>Powerful</strong>?</h2>
+                            <h2 style="color:#fff;" >i and my friend tried to Create <strong>Useful</strong> things</h2>
+                            <h2 style="color:#fff;" >Let's unleash our <strong>limitless potential</strong>!</h2>
+                            <h2 style="color:#fff;" >Why? Becuase <strong>Lions</strong> never giveup!</h2>
+                            <h2 style="color:#fff;" >so We stayed awake like sleepless <strong>Owls</strong>.</h2>
+                            <h2> </h2>
+                            <h2><strong> We Are P.U.L.L.O</strong> 
+                           </div>                          
+                        </div>
+					{% endif %}
+    		</div>
+    			</div>
+    			<div class="col-md-6">
+    				<div class="shop_banner">
+    					<div class="our_shop">
+    						<button class="out_shop_bt">Our Shop</button>
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+   	<!-- contact section end -->
+
+	   {% endblock content %}

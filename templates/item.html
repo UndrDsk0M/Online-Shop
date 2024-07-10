@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+
+<link href="{% static 'css/item.css'%}" rel="stylesheet">
+<br>
+<main>
+    <div class="card">
+      <div class="card__title">
+        <div class="icon">
+          <a href="#"><i class="fa fa-arrow-left"></i></a>
+        </div>
+        <h3>{{ item.category }}</h3>
+      </div>
+      <div class="card__body">
+        <div class="half">
+          <div class="featured_text">
+            <h1>{{item.name}}</h1>
+            <p class="sub">{{item.category}}</p>
+            <p class="price">${{item.price}}</p>
+          </div>
+          <div class="image">
+            <img src="{{ item.image.url }}" alt="">
+          </div>
+        </div>
+        <div class="half">
+          <div class="description">
+            <p>{{item.description}}</p>
+          </div>
+          {% for detail in item.info %}
+          <p>{{ detail }}</p>
+          {% endfor %}
+          {% if item.available %}
+          <span class="stock"><i class="fa fa-pen"></i> In stock</span>
+          {% else %}
+          <span style="color:red;" class="stock"><i class="fa fa-pen"></i>Selled!</span>
+          {% endif %}
+          <div class="reviews">
+            <ul class="stars">
+              <li><i class="fa fa-star"></i></li>
+              <li><i class="fa fa-star"></i></li>
+              <li><i class="fa fa-star"></i></li>
+              <li><i class="fa fa-star"></i></li>
+              <li><i class="fa fa-star-o"></i></li>
+            </ul>
+            <span>({{ item.views }} reviews)</span>
+          </div>
+        </div>
+      </div>
+      <div class="card__footer">
+        <div class="recommend">
+          <p>Brand </p>
+          <h3>__{{ item.brand }}__</h3>
+        </div>
+        {% if user.is_authenticated %}
+        <div class="action">
+            <button type="button" class="addcart" data-item="{{ item.slug }}">Add to cart</button>
+        </div>
+        {% else %}
+        <div>
+            <a style="cursor: pointer; border: 1px solid #ccb1b1; padding: 14px 30px; border-radius: 200px; color: #fff; background: #d57272; font-family: 'Open Sans', sans-serif; font-weight: bold; font-size: 20px; transition: 200ms;" class="login" href="{% url "signin" %}">Login</a>
+            
+          </div>
+        {% endif %}
+
+      </div>
+    </div>
+  </main>
+<script src="{% static 'js/item.js'%}" charset="utf-8"></script>
+
+{% endblock %}
